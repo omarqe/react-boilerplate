@@ -1,0 +1,171 @@
+@mixin get-gradient($background1, $background2, $opacity: 1, $gradient: 45deg) {
+    @include linear-gradient(to right, $background1 0%, $background2 100%);
+}
+
+@mixin linear-gradient($direction, $color-stops...) {
+    @if is-direction($direction) == false {
+        $color-stops: $direction, $color-stops;
+        $direction: 180deg;
+    }
+
+    background: nth(nth($color-stops, 1), 1);
+    background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+    background: linear-gradient($direction, $color-stops);
+}
+
+@function is-direction($value) {
+    $is-keyword: index(
+        (
+            to top,
+            to top right,
+            to right top,
+            to right,
+            to bottom right,
+            to right bottom,
+            to bottom,
+            to bottom left,
+            to left bottom,
+            to left,
+            to left top,
+            to top left
+        ),
+        $value
+    );
+    $is-angle: type-of($value) == "number" and index("deg" "grad" "turn" "rad", unit($value));
+
+    @return $is-keyword or $is-angle;
+}
+
+@function legacy-direction($value) {
+    @if is-direction($value) == false {
+        @error "Cannot convert `#{$value}` to legacy syntax because it doesn't seem to be a direction.";
+    }
+
+    $conversion-map: (
+        to top: bottom,
+        to top right: bottom left,
+        to right top: left bottom,
+        to right: left,
+        to bottom right: top left,
+        to right bottom: left top,
+        to bottom: top,
+        to bottom left: top right,
+        to left bottom: right top,
+        to left: right,
+        to left top: right bottom,
+        to top left: bottom right
+    );
+
+    @if map-has-key($conversion-map, $value) {
+        @return map-get($conversion-map, $value);
+    }
+
+    @return 90deg - $value;
+}
+
+// @author  Tim Knight
+// @link    https://goo.gl/EfcPXY
+@mixin breakpoint($min: 0, $max: 0) {
+    $type: type-of($min);
+    @if $type == string {
+        @if $min == xs {
+            @media (max-width: 767px) {
+                @content;
+            }
+        } @else if $min == sm {
+            @media (min-width: 768px) {
+                @content;
+            }
+        } @else if $min == md {
+            @media (min-width: 992px) {
+                @content;
+            }
+        } @else if $min == lg {
+            @media (min-width: 1200px) {
+                @content;
+            }
+        } @else {
+            @warn "Breakpoint mixin supports: xs, sm, md, lg";
+        }
+    } @else if $type == number {
+        $query: "all" !default;
+        @if $min != 0 and $max != 0 {
+            $query: "(min-width: #{$min}) and (max-width: #{$max})";
+        } @else if $min != 0 and $max == 0 {
+            $query: "(min-width: #{$min})";
+        } @else if $min == 0 and $max != 0 {
+            $query: "(max-width: #{$max})";
+        }
+        @media #{$query} {
+            @content;
+        }
+    }
+}
+
+@mixin get-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin get-positioned-radius($radius, $position) {
+    -webkit-border-#{$position}-radius: $radius;
+    -moz-border-#{$position}-radius: $radius;
+    -ms-border-#{$position}-radius: $radius;
+    -o-border-#{$position}-radius: $radius;
+    border-#{$position}-radius: $radius;
+}
+
+@mixin get-transition($prop: 0.2s) {
+    -webkit-transition: $prop;
+    -moz-transition: $prop;
+    -ms-transition: $prop;
+    -o-transition: $prop;
+    transition: $prop;
+}
+
+@mixin css-transform($prop) {
+    -webkit-transform: $prop;
+    -moz-transform: $prop;
+    -ms-transform: $prop;
+    -o-transform: $prop;
+    transform: $prop;
+}
+
+@mixin get-shadow($value: 0 1px 5px rgba(34, 36, 38, 0.05)) {
+    -webkit-box-shadow: $value;
+    -moz-box-shadow: $value;
+    -ms-box-shadow: $value;
+    -o-box-shadow: $value;
+    box-shadow: $value;
+}
+
+/**
+ * In some cases, we need to hide the scrollbar, so we add a gradient to
+ * the scrollable to indicate that it can be scrolled.
+ * 
+ * @author  Hash @ StackOverflow
+ * @link    https://stackoverflow.com/a/44794221
+ * @since   1.0
+ **/
+@mixin scrollable-gradient($hidingColor1: white 30%, $hidingColor2: rgba(255, 255, 255, 0)) {
+    $background1: rgba(82, 101, 121, 0.2);
+    $background2: rgba(82, 101, 121, 0);
+
+    &.with-gradient {
+        // background: linear-gradient($hidingColor1, $hidingColor2),
+        //     linear-gradient($hidingColor2, $hidingColor1) 0 100%,
+        //     radial-gradient(farthest-side at 50% 0, farthest-side, $background1, $background2),
+        //     radial-gradient(farthest-side at 50% 100%, farthest-side, $background1, $background2) 0
+        //         100%;
+        background: linear-gradient($hidingColor1, $hidingColor2),
+            linear-gradient($hidingColor2, $hidingColor1) 0 100%,
+            radial-gradient(farthest-side at 50% 0, $background1, $background2),
+            radial-gradient(farthest-side at 50% 100%, $background1, $background2) 0 100%;
+        background-size: 100% 40px, 100% 40px, 100% 14px, 100% 14px;
+        background-repeat: no-repeat;
+        background-attachment: local, local, scroll, scroll;
+    }
+}

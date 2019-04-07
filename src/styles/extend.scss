@@ -1,0 +1,25 @@
+%no-scrollbar {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+    &::-webkit-scrollbar {
+        width: 0px;
+        background: transparent; /* make scrollbar transparent */
+    }
+}
+
+%scrollable {
+    overflow-y: auto;
+    &.with-gradient {
+        @include scrollable-gradient();
+    }
+    &.hidden-scrollbar {
+        @extend %no-scrollbar;
+    }
+    &.bordered {
+        padding: 20px;
+        @include get-radius(5px);
+        &.shadow {
+            @include get-shadow();
+        }
+    }
+}

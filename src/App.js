@@ -5,6 +5,8 @@ import Routes from "./routes.json";
 import { HandleProgressBar } from "./components";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
+import "./styles/style.scss";
+
 class App extends React.Component {
     constructor(props) {
         super(props);

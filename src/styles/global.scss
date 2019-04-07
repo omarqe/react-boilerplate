@@ -1,0 +1,22 @@
+// Bootstrap everything we need
+@import "colors";
+@import "dimens";
+@import "mixins";
+@import "extend";
+@import "string";
+
+body,
+html {
+    margin: 0;
+    height: 100%;
+    font-size: $font-size;
+    font-family: $font-family;
+
+    &.dimmable {
+        &.blurring {
+            .global {
+                @include css-transform(scale(1.01));
+            }
+        }
+    }
+}
