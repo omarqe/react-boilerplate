@@ -1,0 +1,142 @@
+[
+    {
+        "id": "PER_R_OVERALL",
+        "name": "View overall performance charts."
+    },
+    {
+        "id": "PER_R_TEAM",
+        "name": "View team performance charts."
+    },
+    {
+        "id": "PER_R_INDIVIDUAL",
+        "name": "View individual performance charts."
+    },
+    {
+        "id": "ORD_C",
+        "name": "Create an order."
+    },
+    {
+        "id": "ORD_R",
+        "name": "View an order."
+    },
+    {
+        "id": "ORD_U",
+        "name": "Update order details."
+    },
+    {
+        "id": "ORD_D",
+        "name": "Delete an order."
+    },
+    {
+        "id": "ORD_U_SHIPPING",
+        "name": "Update order shipping status and tracking code."
+    },
+    {
+        "id": "ORD_U_PAYMENT",
+        "name": "Update order payment details."
+    },
+    {
+        "id": "PRO_C",
+        "name": "Create a product."
+    },
+    {
+        "id": "PRO_R",
+        "name": "View a product."
+    },
+    {
+        "id": "PRO_U",
+        "name": "Update a product."
+    },
+    {
+        "id": "PRO_D",
+        "name": "Delete a product."
+    },
+    {
+        "id": "ORG_C_BRANCH",
+        "name": "Add a new branch to the company."
+    },
+    {
+        "id": "ORG_R_BRANCH",
+        "name": "View company's branches."
+    },
+    {
+        "id": "ORG_D_BRANCH",
+        "name": "Delete a branch from an organisation."
+    },
+    {
+        "id": "ORG_C_TEAM",
+        "name": "Add a new team in a branch."
+    },
+    {
+        "id": "ORG_U_TEAM",
+        "name": "Update a team in a branch."
+    },
+    {
+        "id": "ORG_D_TEAM",
+        "name": "Delete a team from a branch."
+    },
+    {
+        "id": "ACC_C",
+        "name": "Create a user account."
+    },
+    {
+        "id": "ACC_R",
+        "name": "View a user account."
+    },
+    {
+        "id": "ACC_U",
+        "name": "Update a user account."
+    },
+    {
+        "id": "ACC_D",
+        "name": "Delete a user account."
+    },
+    {
+        "id": "CUS_C_LEAD",
+        "name": "Add a new lead."
+    },
+    {
+        "id": "CUS_R_LEAD",
+        "name": "View leads."
+    },
+    {
+        "id": "CUS_U_LEAD",
+        "name": "Update a lead."
+    },
+    {
+        "id": "CUS_D_LEAD",
+        "name": "Delete a lead."
+    },
+    {
+        "id": "CUS_R",
+        "name": "View customer details."
+    },
+    {
+        "id": "CUS_U",
+        "name": "Update customer details, assign customer to salesperson."
+    },
+    {
+        "id": "CUS_D",
+        "name": "Delete a customer."
+    },
+    {
+        "id": "ADM_C_PUSH",
+        "name": "Send push notifications."
+    },
+    {
+        "id": "ADM_D_PUSH",
+        "name": "Delete push notifications."
+    },
+    {
+        "id": "ADM_R_CALENDAR",
+        "name": "View calendar events."
+    },
+    {
+        "id": "SET_U_GENERAL",
+        "name": "Update general settings."
+    },
+    {
+        "id": "SET_U_PERMISSIONS",
+        "name": "Update permission settings."
+    }
+]
